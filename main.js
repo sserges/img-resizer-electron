@@ -38,17 +38,33 @@ app.whenReady().then(() => {
 
 // Menu template
 const menu = [
+  ...(isMac
+    ? [{}]
+    : [
+        {
+          label: app.name,
+          submenu: [
+            {
+              label: 'About',
+            },
+          ],
+        },
+      ]),
   {
     role: 'fileMenu',
-    // label: 'File',
-    // submenu: [
-    //   {
-    //     label: 'Quit',
-    //     click: () => app.quit(),
-    //     accelerator: 'CmdOrCtrl+W',
-    //   },
-    // ],
   },
+  ...(!isMac
+    ? [
+        {
+          label: 'Help',
+          submenu: [
+            {
+              label: 'About',
+            },
+          ],
+        },
+      ]
+    : []),
 ]
 
 app.on('window-all-closed', () => {
