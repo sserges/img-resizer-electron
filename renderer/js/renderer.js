@@ -5,8 +5,6 @@ const filename = document.querySelector('#filename')
 const heightInput = document.querySelector('#height')
 const widthInput = document.querySelector('#width')
 
-console.log(versions.node())
-
 function loadImage(e) {
   const file = e.target.files[0]
 
@@ -27,6 +25,7 @@ function loadImage(e) {
 
   form.style.display = 'block'
   filename.innerText = file.name
+  outputPath.innerText = path.join(os.homedir(), 'Images')
 }
 
 // Make sure file is image
