@@ -6,6 +6,8 @@ const resizeImg = require('resize-img')
 
 const { app, BrowserWindow, Menu, ipcMain, shell } = require('electron')
 
+process.env.NODE_ENV = 'production'
+
 const isDev = process.env.NODE_ENV !== 'production'
 const isMac = process.platform === 'darwin'
 
@@ -50,6 +52,9 @@ app.whenReady().then(() => {
   // Implement menu
   const mainMenu = Menu.buildFromTemplate(menu)
   Menu.setApplicationMenu(mainMenu)
+
+  // Remove mainWindow from memory on close
+  mainWindow.on('closed', () => (mainWindow = null))
 
   app.on('activate', () => {
     if (BrowserWindow.getAllWindows().length === 0) {
