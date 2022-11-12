@@ -9,9 +9,11 @@ const { app, BrowserWindow, Menu, ipcMain, shell } = require('electron')
 const isDev = process.env.NODE_ENV !== 'production'
 const isMac = process.platform === 'darwin'
 
+let mainWindow
+
 // Create the main window
 function createMainWindow() {
-  const mainWindow = new BrowserWindow({
+  mainWindow = new BrowserWindow({
     title: 'Image Resizer',
     width: isDev ? 1000 : 500,
     height: 600,
